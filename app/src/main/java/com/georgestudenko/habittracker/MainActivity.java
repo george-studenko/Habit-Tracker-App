@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         Cursor cursor = HabitContentManager.getAllHabitsData(this);
 
         while(cursor.moveToNext()) {
-            Log.d("Cursor Data",cursor.getLong(0) + "  " + cursor.getString(1) + "  " + cursor.getInt(2) + "  " + cursor.getInt(3));
+            Log.d("Cursor Data", cursor.getString(0) + "  " + cursor.getInt(1) + "  " + cursor.getInt(2));
         }
         cursor.close();
     }

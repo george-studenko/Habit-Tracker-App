@@ -43,6 +43,7 @@ public final class HabitContentManager {
     public static Cursor getAllHabitsData(Context context){
         HabitDbHelper dbHelper = new HabitDbHelper(context,HabitDbHelper.DATABASE_NAME,null, HabitDbHelper.DATABASE_VERSION);
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        return db.query(HabitEntry.TABLE_NAME,null,null,null,null,null,HabitEntry.COLUMN_HABIT_DESCRIPTION);
+        String[] projection = {HabitEntry.COLUMN_HABIT_DESCRIPTION,HabitEntry.COLUMN_HABIT_DIFFICULTY_LEVEL,HabitEntry.COLUMN_HABIT_REPETITIONS_COUNT};
+        return db.query(HabitEntry.TABLE_NAME,projection,null,null,null,null,HabitEntry.COLUMN_HABIT_DESCRIPTION);
     }
 }
