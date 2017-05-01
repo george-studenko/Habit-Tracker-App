@@ -1,10 +1,14 @@
 package com.georgestudenko.habittracker;
 
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.facebook.stetho.Stetho;
+import com.georgestudenko.habittracker.data.HabitContentManager;
+import com.georgestudenko.habittracker.data.HabitContract;
 import com.georgestudenko.habittracker.data.HabitDbHelper;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,7 +19,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Stetho.initializeWithDefaults(this);
 
-        HabitDbHelper dbHelper = new HabitDbHelper(this,HabitDbHelper.DATABASE_NAME,null,HabitDbHelper.DATABASE_VERSION);
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        HabitContentManager.insertHabit(this,"Drink water", HabitContract.HabitEntry.DIFFICULTY_LEVEL_EASY,15);
+        HabitContentManager.insertHabit(this,"Do exercise", HabitContract.HabitEntry.DIFFICULTY_LEVEL_MEDIUM,2);
+
+        Cursor cursor = HabitContentManager.getAllHabitsData(this);
+
+        while(cursor.moveToNext()) {
+            Log.d("Cursor Data",cursor.getLong(0) + "  " + cursor.getString(1) + "  " + cursor.getInt(2) + "  " + cursor.getInt(3));
+        }
+        cursor.close();
     }
 }
