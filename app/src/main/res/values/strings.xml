@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">HabitTracker</string>
+    <string name="this_app_has_no_ui_implementation_for_the_moment">This App has no UI implementation for the moment</string>
+</resources>
